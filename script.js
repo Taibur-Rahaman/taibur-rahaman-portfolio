@@ -39,54 +39,23 @@
       }
 
       const dismiss = () => {
-        if (splash.classList.contains("done")) return;
-        splash.classList.add("done");
+        if (splash.classList.contains("fade") || splash.classList.contains("done")) return;
 
-        const bg = splash.querySelector(".splash-bg");
-        splash.querySelectorAll(".splash-kicker, .splash-roles, .splash-bar").forEach((el) => {
-          el.style.transition = "opacity 600ms ease";
-          el.style.opacity = "0";
-        });
+        // 1) Content lifts and fades out
+        splash.classList.add("fade");
 
-        const MORPH = 1600;
-        let moved = false;
-        splash.querySelectorAll(".sw[data-word]").forEach((sw, i) => {
-          const target = document.querySelector('.hw[data-word="' + sw.dataset.word + '"]');
-          if (!target) return;
-          // Cancel the entrance animation (its forwards-fill would override transform)
-          sw.style.animation = "none";
-          sw.style.opacity = "1";
-          sw.style.filter = "none";
-          sw.style.transform = "none";
-          const f = sw.getBoundingClientRect();
-          const t = target.getBoundingClientRect();
-          if (!f.width || !t.width) return;
-          const dx = t.left - f.left;
-          const dy = t.top - f.top;
-          const s = t.width / f.width;
-          const delay = i * 110;
-          sw.style.transformOrigin = "top left";
-          sw.style.transition =
-            "transform " + MORPH + "ms cubic-bezier(0.62, 0.02, 0.16, 1) " + delay + "ms";
-          requestAnimationFrame(() => {
-            sw.style.transform = "translate(" + dx + "px," + dy + "px) scale(" + s + ")";
-          });
-          moved = true;
-        });
+        // 2) Curtain rises to reveal the page
+        setTimeout(() => splash.classList.add("done"), 360);
 
-        if (bg) {
-          bg.style.transitionDelay = "500ms";
-          bg.style.opacity = "0";
-        }
-
+        // 3) Remove once the slide finishes
         const cleanup = () => {
           document.body.classList.remove("no-scroll");
           if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
         };
-        setTimeout(cleanup, moved ? MORPH + 450 : 900);
+        setTimeout(cleanup, 360 + 950);
       };
 
-      const hold = setTimeout(dismiss, 4800);
+      const hold = setTimeout(dismiss, 4200);
       splash.addEventListener("click", () => {
         clearTimeout(hold);
         dismiss();
