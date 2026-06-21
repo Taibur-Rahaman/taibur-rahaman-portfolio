@@ -44,15 +44,15 @@
         // 1) Content lifts and fades out
         splash.classList.add("fade");
 
-        // 2) Curtain rises to reveal the page
-        setTimeout(() => splash.classList.add("done"), 360);
+        // 2) Panels rise in a staggered sequence to reveal the page
+        setTimeout(() => splash.classList.add("done"), 340);
 
-        // 3) Remove once the slide finishes
+        // 3) Remove once the last panel finishes
         const cleanup = () => {
           document.body.classList.remove("no-scroll");
           if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
         };
-        setTimeout(cleanup, 360 + 950);
+        setTimeout(cleanup, 340 + 1500);
       };
 
       const hold = setTimeout(dismiss, 4200);
