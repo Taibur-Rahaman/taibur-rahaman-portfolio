@@ -44,19 +44,27 @@ vercel --prod # production
 
 Or click the **Deploy with Vercel** button above to import this repository directly.
 
-### Export PDF CV
+### Download CV
 
-Open the site and use **Download CV** in the navigation (or `Cmd/Ctrl + P` → Save as PDF).
+Click **Download CV** in the navigation to download the ATS-friendly PDF (`Md-Taibur-Rahaman-CV.pdf`). The source is `cv.html`; regenerate with headless Chrome:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --no-pdf-header-footer \
+  --print-to-pdf="Md-Taibur-Rahaman-CV.pdf" "file://$PWD/cv.html"
+```
 
 ## Project structure
 
 ```
 .
-├── index.html     # Markup and content
-├── styles.css     # Design system, layout, animations, print styles
-├── script.js      # Splash, reveals, counters, morph transition
-├── vercel.json    # Static hosting config + headers
-├── LICENSE        # MIT
+├── index.html                  # Markup and content
+├── styles.css                  # Design system, layout, animations, print styles
+├── script.js                   # Splash, reveals, counters, morph transition
+├── cv.html                     # ATS-friendly CV source
+├── Md-Taibur-Rahaman-CV.pdf    # Generated ATS PDF (linked from Download CV)
+├── vercel.json                 # Static hosting config + headers
+├── LICENSE                     # MIT
 └── README.md
 ```
 
