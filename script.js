@@ -44,15 +44,15 @@
         // 1) Content lifts and fades out
         splash.classList.add("fade");
 
-        // 2) Panels rise in a staggered sequence to reveal the page
+        // 2) Iris closes (clip-path circle) to reveal the page
         setTimeout(() => splash.classList.add("done"), 340);
 
-        // 3) Remove once the last panel finishes
+        // 3) Remove once the iris finishes
         const cleanup = () => {
           document.body.classList.remove("no-scroll");
           if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
         };
-        setTimeout(cleanup, 340 + 1500);
+        setTimeout(cleanup, 340 + 1150);
       };
 
       const hold = setTimeout(dismiss, 4200);
