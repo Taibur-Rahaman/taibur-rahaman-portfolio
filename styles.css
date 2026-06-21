@@ -149,9 +149,12 @@ a:hover { color: #aaffee; }
   display: grid;
   place-items: center;
   background: transparent;
-  clip-path: circle(150% at 50% 50%);
-  transition: clip-path 1000ms cubic-bezier(0.85, 0, 0.15, 1);
-  will-change: clip-path;
+  transform-origin: 50% 0%;
+  transition:
+    transform 1000ms cubic-bezier(0.66, 0, 0.2, 1),
+    opacity 520ms var(--ease) 480ms,
+    filter 760ms var(--ease) 240ms;
+  will-change: transform, opacity, filter;
 }
 .splash-panels {
   position: absolute;
@@ -162,15 +165,27 @@ a:hover { color: #aaffee; }
   flex: 1 1 0;
   background: var(--bg);
 }
-.splash-inner { transition: opacity 440ms var(--ease), transform 700ms var(--ease); }
+/* depth shading that deepens as the panel tips back */
+.splash-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 45%);
+  opacity: 0;
+  transition: opacity 700ms var(--ease);
+  pointer-events: none;
+}
+.splash-inner { transition: opacity 420ms var(--ease), transform 640ms var(--ease); }
 .splash.fade .splash-inner {
   opacity: 0;
-  transform: scale(1.08);
+  transform: translateY(-10px) scale(0.97);
 }
 .splash.done {
   pointer-events: none;
-  clip-path: circle(0% at 50% 50%);
+  transform: perspective(1600px) rotateX(94deg);
+  opacity: 0;
+  filter: blur(7px);
 }
+.splash.done .splash-shade { opacity: 1; }
 .splash-bg {
   position: absolute;
   inset: 0;
