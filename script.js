@@ -40,14 +40,8 @@
 
       const dismiss = () => {
         if (splash.classList.contains("fade") || splash.classList.contains("done")) return;
-
-        // 1) Content lifts and fades out
         splash.classList.add("fade");
-
-        // 2) Splash tips back in 3D depth to reveal the page
         setTimeout(() => splash.classList.add("done"), 340);
-
-        // 3) Remove once the fold finishes
         const cleanup = () => {
           document.body.classList.remove("no-scroll");
           if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
@@ -248,5 +242,101 @@
         infoBtn.setAttribute("aria-expanded", "false");
       }
     });
+  }
+
+  /* ---- LinkedIn profile photo ---- */
+  const heroInner = document.querySelector(".hero-inner");
+  const heroTitle = document.getElementById("hero-title");
+  if (heroInner && heroTitle && !document.querySelector(".profile-photo-wrap")) {
+    const photo = document.createElement("div");
+    photo.className = "profile-photo-wrap reveal in";
+    photo.setAttribute("aria-label", "Md Taibur Rahaman profile photo");
+    photo.innerHTML = `
+      <img class="profile-photo" src="https://media.licdn.com/dms/image/v2/D5603AQG6KqwHEhGG2A/profile-displayphoto-crop_800_800/B56aAqzm.ZI0AM-/0/1787424569528?e=1789603200&v=beta&t=MdsiQ4C0LR9PSpF41IXLStNvEFnQZWp3NpQ3afARba0" alt="Md Taibur Rahaman" loading="eager" decoding="async">
+      <span class="profile-photo-ring" aria-hidden="true"></span>
+    `;
+    heroTitle.parentNode.insertBefore(photo, heroTitle);
+  }
+
+  /* ---- Latest projects ---- */
+  const projectGrid = document.querySelector(".project-grid");
+  if (projectGrid && !projectGrid.dataset.latestProjectsAdded) {
+    projectGrid.dataset.latestProjectsAdded = "true";
+
+    const latestProjects = [
+      {
+        tag: "NEW · AI",
+        name: "ReplyPilot AI",
+        description: "AI employee platform for Bangladesh SMBs with shared memory, RAG, CRM, sales automation, and controlled human handoff.",
+        tech: ["Next.js", "TypeScript", "PostgreSQL", "pgvector"],
+        url: "https://github.com/Taibur-Rahaman/Reply-Pilot-Ai"
+      },
+      {
+        tag: "NEW · E-COMMERCE AI",
+        name: "Prodexa AI",
+        description: "Hosted product-discovery platform for WordPress and WooCommerce stores, with tenant-scoped discovery, licensing, HMAC APIs, and a WordPress client plugin.",
+        tech: ["Node.js", "Fastify", "PostgreSQL", "WordPress"],
+        url: "https://github.com/Taibur-Rahaman/Prodexa-AI---Product-Recommendation-Engine"
+      },
+      {
+        tag: "NEW · FINTECH",
+        name: "BeePay",
+        description: "Bangladesh-first WooCommerce payment gateway supporting bKash, Nagad, Rocket, and SSLCommerz with encrypted credential storage and sandbox support.",
+        tech: ["PHP", "WooCommerce", "bKash", "Nagad"],
+        url: "https://github.com/Taibur-Rahaman/BeePay--WooCommerce-Bangladesh-Payment-Gateway"
+      },
+      {
+        tag: "NEW · DESKTOP",
+        name: "MRX FlipClock ScreenSaver",
+        description: "Flipqlo-style flip clock screensaver for Windows, macOS, Linux, and the web, with a live browser demo and platform installers.",
+        tech: ["JavaScript", "WebView", "CSS", "Desktop"],
+        url: "https://github.com/Taibur-Rahaman/MRX-FlipClock-ScreenSaver"
+      },
+      {
+        tag: "NEW · MEDTECH",
+        name: "BaigMed",
+        description: "Medical technology platform project focused on building practical digital healthcare workflows and tools.",
+        tech: ["Healthcare", "Software", "Product"],
+        url: "https://github.com/Taibur-Rahaman/BaigMed"
+      },
+      {
+        tag: "NEW · AI SECURITY",
+        name: "Agent2Wp AI WordPress Agent",
+        description: "Security-focused WordPress AI agent layer with fail-closed risk classification, permission gating, audit logging, and controlled execution.",
+        tech: ["PHP", "WordPress", "MCP", "AI Security"],
+        url: "https://github.com/Taibur-Rahaman/Agent2Wp-AI-WordPress-Agent"
+      }
+    ];
+
+    latestProjects.reverse().forEach((project) => {
+      const card = document.createElement("article");
+      card.className = "project-card reveal in tilt";
+      card.innerHTML = `
+        <div class="project-card-top">
+          <span class="project-tag">${project.tag}</span>
+          <h3>${project.name}</h3>
+        </div>
+        <p>${project.description}</p>
+        <ul class="tech-list">${project.tech.map((item) => `<li>${item}</li>`).join("")}</ul>
+        <a class="project-link" href="${project.url}" target="_blank" rel="noopener noreferrer">View repository →</a>
+      `;
+      projectGrid.prepend(card);
+    });
+
+    if (!prefersReduced && window.matchMedia("(pointer: fine)").matches) {
+      projectGrid.querySelectorAll(".tilt").forEach((card) => {
+        if (card.dataset.tiltBound) return;
+        card.dataset.tiltBound = "true";
+        card.addEventListener("pointermove", (e) => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = `translateY(-6px) rotateX(${(-y * 5).toFixed(2)}deg) rotateY(${(x * 5).toFixed(2)}deg)`;
+        });
+        card.addEventListener("pointerleave", () => {
+          card.style.transform = "";
+        });
+      });
+    }
   }
 })();
