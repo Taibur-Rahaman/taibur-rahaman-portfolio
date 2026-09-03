@@ -46,6 +46,7 @@
       const open = navMenu.classList.toggle("open");
       navToggle.setAttribute("aria-expanded", String(open));
       navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      playUiSound(open ? "open" : "close");
     });
     navMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
       navMenu.classList.remove("open");
@@ -143,24 +144,24 @@
     const open = infoPanel.hasAttribute("hidden");
     if (open) { infoPanel.removeAttribute("hidden"); infoBtn.setAttribute("aria-expanded", "true"); }
     else { infoPanel.setAttribute("hidden", ""); infoBtn.setAttribute("aria-expanded", "false"); }
+    playUiSound(open ? "open" : "close");
   });
 
-  /* ---- LinkedIn profile photo ---- */
+  /* ---------- Portrait profile image ---------- */
   const heroInner = document.querySelector(".hero-inner");
   const heroTitle = document.getElementById("hero-title");
   if (heroInner && heroTitle && !document.querySelector(".profile-photo-wrap")) {
     const photo = document.createElement("div");
     photo.className = "profile-photo-wrap reveal in";
     photo.setAttribute("aria-label", "Md Taibur Rahaman profile photo");
-    photo.style.cssText = "position:relative;width:132px;height:132px;margin:0 0 26px;border-radius:50%;padding:5px;background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.03));box-shadow:0 18px 60px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.08);overflow:visible;";
     photo.innerHTML = `
-      <img class="profile-photo" src="https://media.licdn.com/dms/image/v2/D5603AQG6KqwHEhGG2A/profile-displayphoto-crop_800_800/B56aAqzm.ZI0AM-/0/1787424569528?e=1789603200&v=beta&t=MdsiQ4C0LR9PSpF41IXLStNvEFnQZWp3NpQ3afARba0" alt="Md Taibur Rahaman" loading="eager" decoding="async" style="display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;">
-      <span class="profile-photo-ring" aria-hidden="true" style="position:absolute;inset:-8px;border:1px solid rgba(255,255,255,.12);border-radius:50%;pointer-events:none;"></span>
+      <img class="profile-photo" src="https://media.licdn.com/dms/image/v2/D5603AQG6KqwHEhGG2A/profile-displayphoto-crop_800_800/B56aAqzm.ZI0AM-/0/1787424569528?e=1789603200&v=beta&t=MdsiQ4C0LR9PSpF41IXLStNvEFnQZWp3NpQ3afARba0" alt="Md Taibur Rahaman" loading="eager" decoding="async">
+      <span class="profile-photo-shine" aria-hidden="true"></span>
     `;
     heroTitle.parentNode.insertBefore(photo, heroTitle);
   }
 
-  /* ---- Latest projects ---- */
+  /* ---------- Latest projects ---------- */
   const projectGrid = document.querySelector(".project-grid");
   if (projectGrid && !projectGrid.dataset.latestProjectsAdded) {
     projectGrid.dataset.latestProjectsAdded = "true";
@@ -180,4 +181,113 @@
     });
     bindTilt(projectGrid);
   }
+
+  /* ---------- Responsive polish + page transitions ---------- */
+  const responsiveStyle = document.createElement("style");
+  responsiveStyle.textContent = `
+    .profile-photo-wrap {
+      position: relative;
+      width: clamp(116px, 18vw, 168px);
+      aspect-ratio: 4 / 5;
+      margin: 0 0 28px;
+      border-radius: 22px;
+      padding: 4px;
+      overflow: hidden;
+      background: linear-gradient(145deg, rgba(94,242,214,.5), rgba(255,255,255,.08));
+      box-shadow: 0 22px 70px rgba(0,0,0,.42), 0 0 0 1px rgba(94,242,214,.18);
+      transform: translateZ(0);
+    }
+    .profile-photo {
+      width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%;
+      border-radius: 18px;
+      transition: transform 700ms cubic-bezier(.22,1,.36,1), filter 500ms ease;
+    }
+    .profile-photo-wrap:hover .profile-photo { transform: scale(1.035); filter: saturate(1.05) contrast(1.03); }
+    .profile-photo-shine {
+      position:absolute; inset:0; pointer-events:none; border-radius:18px;
+      background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,.18) 48%, transparent 58%);
+      transform: translateX(-120%);
+      animation: portraitShine 5.5s ease-in-out infinite;
+    }
+    @keyframes portraitShine { 0%,65%,100%{transform:translateX(-120%)} 78%{transform:translateX(120%)} }
+    .project-card { transition: transform 420ms cubic-bezier(.22,1,.36,1), border-color 300ms ease, box-shadow 300ms ease; }
+    .project-card:hover { border-color: rgba(94,242,214,.28); box-shadow: 0 20px 55px rgba(0,0,0,.28); }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    @media (max-width: 900px) {
+      .hero { padding: 70px 0 60px; min-height: auto; }
+      .hero-inner { width: min(100% - 28px, var(--container)); }
+      .hero-title, #hero-title { font-size: clamp(3.1rem, 11vw, 5.4rem); }
+      .profile-photo-wrap { width: 126px; }
+      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .container, .hero-inner, .nav { width: min(100% - 24px, var(--container)); }
+      .hero { padding: 54px 0 46px; }
+      .profile-photo-wrap { width: 112px; margin-bottom: 22px; border-radius: 18px; }
+      .profile-photo { border-radius: 14px; }
+      .hero-title, #hero-title { font-size: clamp(2.65rem, 15vw, 4.3rem); line-height: .94; letter-spacing: -.05em; }
+      .hero-subtitle, .hero-description, .hero-copy { max-width: 100%; }
+      .hero-actions { flex-wrap: wrap; }
+      .project-grid { grid-template-columns: 1fr; }
+      .nav-menu.open { max-height: calc(100vh - 90px); overflow:auto; }
+    }
+    @media (max-width: 480px) {
+      body { font-size: 1rem; }
+      .hero { padding-top: 42px; }
+      .profile-photo-wrap { width: 98px; }
+      .eyebrow { max-width: 100%; font-size: .68rem; letter-spacing: .18em; }
+      .hero-actions > * { width: 100%; justify-content: center; }
+      .project-card { padding: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .profile-photo-shine { animation: none; }
+      .profile-photo { transition: none; }
+    }
+  `;
+  document.head.appendChild(responsiveStyle);
+
+  /* ---------- Lightweight UI sound effects ---------- */
+  let audioCtx = null;
+  let audioReady = false;
+  const initAudio = () => {
+    if (prefersReduced || audioReady) return;
+    try {
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      audioReady = true;
+    } catch (_) {}
+  };
+  const playUiSound = (type = "click") => {
+    if (prefersReduced) return;
+    initAudio();
+    if (!audioCtx || audioCtx.state !== "running") return;
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type === "open" ? "sine" : "triangle";
+    const startFreq = type === "open" ? 520 : type === "close" ? 330 : 440;
+    osc.frequency.setValueAtTime(startFreq, now);
+    osc.frequency.exponentialRampToValueAtTime(type === "open" ? 760 : type === "close" ? 220 : 520, now + .08);
+    gain.gain.setValueAtTime(.0001, now);
+    gain.gain.exponentialRampToValueAtTime(.035, now + .008);
+    gain.gain.exponentialRampToValueAtTime(.0001, now + .095);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + .11);
+  };
+  window.addEventListener("pointerdown", initAudio, { once: true, passive: true });
+  window.addEventListener("keydown", initAudio, { once: true });
+
+  /* ---------- Smooth anchor transition ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const href = link.getAttribute("href");
+      const target = href && document.querySelector(href);
+      if (!target) return;
+      event.preventDefault();
+      playUiSound("click");
+      target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "start" });
+      if (window.history && window.history.replaceState) window.history.replaceState(null, "", href);
+    });
+  });
 })();
