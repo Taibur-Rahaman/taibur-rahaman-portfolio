@@ -1,58 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Md Taibur Rahaman — CV</title>
+<meta name="description" content="ATS-friendly Europass-style CV of Md Taibur Rahaman, AI, full-stack and product engineer.">
 <style>
-@page{size:A4;margin:12mm 14mm}*{box-sizing:border-box}html,body{margin:0;padding:0}body{font-family:Arial,Helvetica,"Liberation Sans",sans-serif;color:#111;font-size:9.6pt;line-height:1.36}h1{font-size:20pt;margin:0 0 2px;letter-spacing:.3px}.role{font-size:10.2pt;font-weight:bold;color:#222;margin:0 0 5px}.contact{font-size:8.9pt;color:#222;margin:0 0 3px}.contact a{color:#111;text-decoration:none}hr{border:none;border-top:1px solid #999;margin:9px 0 10px}h2{font-size:10.6pt;text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid #bbb;padding-bottom:2px;margin:12px 0 6px}p{margin:0 0 6px}.entry{margin:0 0 7px}.entry-head{display:flex;justify-content:space-between;gap:12px}.entry-title{font-weight:bold}.entry-org{font-style:italic}.entry-date{white-space:nowrap;color:#333;font-size:9pt}ul{margin:3px 0 0;padding-left:16px}li{margin:0 0 2px}.skills p{margin:0 0 3px}.tight{margin-bottom:3px}.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.project{margin:0 0 5px}.project b{font-size:9.3pt}.project span{color:#333}.small{font-size:8.7pt;color:#333}@media(max-width:700px){body{font-size:10pt}.project-grid{display:block}.entry-head{display:block}.entry-date{display:block}}
+@page{size:A4;margin:15mm 16mm}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:Arial,Helvetica,"Liberation Sans",sans-serif;color:#161616;background:#fff;font-size:10pt;line-height:1.42}
+.cv{max-width:820px;margin:28px auto;padding:0 26px 40px}
+.header{border-bottom:2px solid #222;padding-bottom:12px;margin-bottom:14px}
+h1{font-size:24pt;line-height:1.05;margin:0 0 5px;letter-spacing:.2px}
+.role{font-size:11pt;font-weight:bold;margin:0 0 7px}
+.contact{font-size:9pt;margin:2px 0;color:#333}
+a{color:#111;text-decoration:none}
+.actions{display:flex;gap:8px;margin:0 0 18px}
+.actions button{border:1px solid #222;background:#fff;padding:7px 12px;font-weight:bold;cursor:pointer}
+.section{margin:0 0 14px}
+h2{font-size:11pt;text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid #777;padding-bottom:3px;margin:0 0 7px}
+p{margin:0 0 6px}
+.entry{margin:0 0 9px}
+.entry-head{display:flex;justify-content:space-between;gap:15px}
+.entry-title{font-weight:bold}
+.entry-org{font-style:italic}
+.date{white-space:nowrap;color:#333}
+ul{margin:3px 0 0;padding-left:18px}
+li{margin:0 0 3px}
+.project{margin:0 0 7px}
+.project strong{font-weight:bold}
+.skills p{margin:0 0 4px}
+.capstone{margin-bottom:9px}
+.capstone-title{font-weight:bold}
+.small{font-size:9pt;color:#333}
+.footer-note{border-top:1px solid #aaa;padding-top:8px;font-size:8.5pt;color:#444}
+@media(max-width:700px){.cv{margin:15px auto;padding:0 18px 30px}.entry-head{display:block}.date{display:block}.actions{position:static}}
+@media print{body{font-size:9.5pt;line-height:1.34}.cv{max-width:none;margin:0;padding:0}.actions{display:none}.section{margin-bottom:11px}h2{margin-bottom:5px}.entry{margin-bottom:7px}.project{margin-bottom:5px}.header{margin-bottom:11px}a{color:#111;text-decoration:none}}
 </style>
 </head>
 <body>
+<div class="cv">
+<div class="actions"><button type="button" onclick="window.print()">Download / Save as PDF</button><button type="button" onclick="history.back()">Back to Portfolio</button></div>
+<header class="header">
 <h1>MD TAIBUR RAHAMAN</h1>
 <p class="role">AI / Full-Stack / WordPress Engineer · Product Builder · Technical Founder</p>
-<p class="contact">Dhaka, Bangladesh · +880 1768-721112 · taibur.rahaman@northsouth.edu</p>
-<p class="contact">GitHub: github.com/Taibur-Rahaman · LinkedIn: linkedin.com/in/taiburrahaman</p>
-<hr />
-<h2>Professional Summary</h2>
-<p>Hands-on Computer Science graduate and product builder working across AI/NLP, full-stack web development, WordPress/WooCommerce, SaaS, blockchain, IoT and robotics. Experienced in taking ideas from architecture and implementation through deployment, while also understanding product, marketing and business requirements.</p>
-<h2>Core Skills</h2>
-<div class="skills">
-<p><strong>Web &amp; Programming:</strong> JavaScript, TypeScript, Python, PHP, HTML5, CSS3, React, Next.js, Node.js, Fastify, REST APIs</p>
-<p><strong>AI:</strong> AI/RAG, NLP, Computer Vision, recommendation systems, conversational AI, medical imaging</p>
-<p><strong>WordPress:</strong> Custom themes/plugins, Elementor, Gutenberg, WooCommerce, payment integrations, MCP/AI automation</p>
-<p><strong>Data &amp; Infrastructure:</strong> PostgreSQL, Supabase, pgvector, Git/GitHub, Docker, API integration</p>
+<p class="contact">Dhaka, Bangladesh · +880 1822-262836 · taibur.rahaman@northsouth.edu</p>
+<p class="contact">GitHub: github.com/Taibur-Rahaman · LinkedIn: linkedin.com/in/taiburrahaman · Portfolio: taibur.vercel.app</p>
+</header>
+<section class="section"><h2>Profile</h2><p>Computer Science graduate and hands-on product builder with practical experience across AI/NLP, full-stack web development, WordPress/WooCommerce, SaaS, blockchain, IoT and robotics. Comfortable taking ideas from requirements and architecture through implementation, integration and deployment, with a strong interest in solving real-world business and engineering problems.</p></section>
+<section class="section"><h2>Work Experience</h2>
+<div class="entry"><div class="entry-head"><span class="entry-title">Technical Founder / Product Builder</span><span class="date">2020 — Present</span></div><div class="entry-org">Omix Solutions &amp; Independent Product Work · Dhaka, Bangladesh</div><ul><li>Build and manage web, AI, SaaS, WordPress/WooCommerce and digital-product initiatives from concept to delivery.</li><li>Work across software engineering, product planning, client requirements, digital marketing and operational execution.</li></ul></div>
+<div class="entry"><div class="entry-head"><span class="entry-title">NSU ACM Student Chapter — Operations / Provision / Promotions</span><span class="date">2020 — 2024</span></div><ul><li>Supported event operations, resource planning, promotions, outreach and team workflows across student technology activities.</li></ul></div>
+</section>
+<section class="section"><h2>Education</h2><div class="entry"><div class="entry-head"><span class="entry-title">B.Sc. in Computer Science &amp; Engineering</span><span class="date">Completed</span></div><div class="entry-org">North South University · Dhaka, Bangladesh</div><p>Computer Science / Artificial Intelligence focus.</p></div></section>
+<section class="section"><h2>University Capstone &amp; Showcase Projects</h2>
+<div class="capstone"><div class="capstone-title">Junior Project Showcase — Special Forces Hand-Signal Translator &amp; IoT Communication Device</div><p>Prototype focused on translating predefined hand signals into digital commands and enabling communication through an IoT-connected device. Technologies and concepts included IoT, embedded systems, communication interfaces and signal translation.</p></div>
+<div class="capstone"><div class="capstone-title">Final Capstone — Hexapods / Multi-Legged Arachnid-Inspired Robots</div><p>Multi-legged robotic systems inspired by arachnid locomotion, developed as a defense-oriented robotics project with a focus on challenging-terrain mobility and controlled remote operation.</p></div>
+</section>
+<section class="section"><h2>Selected Technical Projects</h2>
+<div class="project"><strong>ReplyPilot AI</strong> — Bangla-first AI employee platform concept using Next.js, PostgreSQL/pgvector, RAG, CRM and controlled sales automation.</div>
+<div class="project"><strong>Prodexa AI</strong> — AI product discovery and recommendation engine for WordPress/WooCommerce using Fastify, APIs and PostgreSQL.</div>
+<div class="project"><strong>BaigDentPro</strong> — Dental practice management SaaS covering clinic, doctor, patient, store and subscription workflows.</div>
+<div class="project"><strong>BlockMed / RxGuard</strong> — Blockchain prescription verification and anti-counterfeit medicine tracking using Solidity, React, Hardhat and QR workflows.</div>
+<div class="project"><strong>Agent2Wp</strong> — WordPress AI-agent/MCP automation project for posts, files, WP-CLI, Elementor and WooCommerce workflows.</div>
+<div class="project"><strong>BeePay</strong> — Bangladesh-focused WooCommerce payment gateway concept for local payment methods and merchant checkout.</div>
+<div class="project"><strong>MRX COD Fraud Protection</strong> — AI/e-commerce concept for identifying suspicious cash-on-delivery orders and reducing fraud risk.</div>
+<div class="project"><strong>SouthStack</strong> — Offline-first AI IDE concept for local developer workflows.</div>
+<div class="project"><strong>DupLens AI</strong> — AI/NLP duplicate-content detection project for similarity analysis.</div>
+<div class="project"><strong>MRI Brain Tumor Detection</strong> — Medical imaging project exploring brain-tumor detection and segmentation with Python/PyTorch/MONAI.</div>
+<div class="project"><strong>Multi-Tenant CRM</strong> — Multi-organization CRM architecture with integrations and AI-assisted workflows.</div>
+<div class="project"><strong>MRX FlipClock</strong> — Cross-platform flip-clock screensaver / desktop experience.</div>
+<div class="project"><strong>RentBee</strong> — Private home-rental marketplace and operations platform using Flutter and Supabase.</div>
+<div class="project"><strong>BaigMed</strong> — Healthcare-oriented software/product project exploring digital service workflows.</div>
+<div class="project"><strong>Poker Simulator</strong> — Game simulation using Expectiminimax-style AI and probability-aware decision making.</div>
+<div class="project"><strong>Sync Meta Flow</strong> — Automation-focused workflow synchronization and API project.</div>
+<div class="project"><strong>Bangla Assistant Bot</strong> — Bangla-focused conversational AI/NLP experiment.</div>
+<div class="project"><strong>CRM — CSE327</strong> — Software engineering project applying requirements, architecture and team-based CRM development.</div>
+</section>
+<section class="section"><h2>Technical Skills</h2><div class="skills">
+<p><strong>Programming &amp; Web:</strong> JavaScript, TypeScript, Python, PHP, HTML5, CSS3, React, Next.js, Node.js, Fastify, REST APIs</p>
+<p><strong>AI &amp; Data:</strong> AI/RAG, NLP, Computer Vision, recommendation systems, conversational AI, medical imaging, PostgreSQL, Supabase, pgvector</p>
+<p><strong>WordPress &amp; Commerce:</strong> WordPress, WooCommerce, custom plugins/themes, Elementor, payment integrations, MCP/AI automation</p>
 <p><strong>Blockchain:</strong> Solidity, Smart Contracts, Hardhat, OpenZeppelin, Web3</p>
-<p><strong>IoT &amp; Robotics:</strong> Arduino, Raspberry Pi, sensors, embedded systems, automation, robotics concepts</p>
+<p><strong>IoT &amp; Robotics:</strong> Arduino, Raspberry Pi, sensors, embedded systems, IoT communication, robotics concepts</p>
+<p><strong>Tools:</strong> Git, GitHub, Docker, API integration, software architecture, product development</p>
+</div></section>
+<section class="section"><h2>Additional Information</h2><p>Interests: Artificial Intelligence, NLP, SaaS, developer tools, digital commerce, IoT, robotics and applied technology.</p></section>
+<p class="footer-note">ATS-friendly, single-column CV structure. For a PDF copy, select “Download / Save as PDF” and choose A4 paper size with default margins.</p>
 </div>
-<h2>Experience &amp; Leadership</h2>
-<div class="entry"><div class="entry-head"><span class="entry-title">Technical Founder / Product Builder</span><span class="entry-date">2020 — Present</span></div><div class="entry-org">Omix Solutions &amp; independent product work · Dhaka, Bangladesh</div><ul><li>Build and manage web, AI, SaaS, WordPress/WooCommerce and digital-product initiatives from concept to delivery.</li><li>Work across engineering, product planning, digital marketing, client requirements and operational execution.</li></ul></div>
-<div class="entry"><div class="entry-head"><span class="entry-title">NSU ACM Student Chapter — Operations / Provision / Promotions</span><span class="entry-date">2020 — 2024</span></div><ul><li>Held progressive responsibilities across operations, provision and promotions; supported event logistics, resources, outreach and team workflows.</li></ul></div>
-<h2>Project Portfolio</h2>
-<div class="project-grid">
-<div class="project"><b>ReplyPilot AI</b> — <span>Bangla-first AI employee platform concept using Next.js, PostgreSQL/pgvector, RAG, CRM and controlled sales automation.</span></div>
-<div class="project"><b>Prodexa AI</b> — <span>AI product discovery and recommendation engine for WordPress/WooCommerce stores using Fastify, APIs and PostgreSQL.</span></div>
-<div class="project"><b>BaigDentPro</b> — <span>Dental practice management SaaS covering clinic, doctor, patient, store and subscription workflows.</span></div>
-<div class="project"><b>BlockMed / RxGuard</b> — <span>Blockchain prescription verification and anti-counterfeit medicine tracking with Solidity, React, Hardhat and QR workflows.</span></div>
-<div class="project"><b>Agent2Wp</b> — <span>WordPress AI-agent/MCP automation plugin for posts, files, WP-CLI, Elementor and WooCommerce workflows.</span></div>
-<div class="project"><b>BeePay</b> — <span>Bangladesh-focused WooCommerce payment gateway concept for local payment methods and merchant checkout.</span></div>
-<div class="project"><b>MRX COD Fraud Protection</b> — <span>AI/e-commerce concept for identifying suspicious cash-on-delivery orders and reducing fraud risk.</span></div>
-<div class="project"><b>SouthStack</b> — <span>Offline-first AI IDE concept for fast local developer workflows.</span></div>
-<div class="project"><b>DupLens AI</b> — <span>AI/NLP duplicate-content detection project for similarity analysis.</span></div>
-<div class="project"><b>MRI Brain Tumor Detection</b> — <span>Medical imaging work exploring brain-tumor detection/segmentation from MRI data with PyTorch/MONAI.</span></div>
-<div class="project"><b>Multi-Tenant CRM</b> — <span>Multi-organization CRM architecture with integrations and AI-assisted business workflows.</span></div>
-<div class="project"><b>MRX FlipClock</b> — <span>Cross-platform flip-clock screensaver / desktop experience.</span></div>
-<div class="project"><b>RentBee</b> — <span>Private home-rental marketplace and operations platform using Flutter and Supabase.</span></div>
-<div class="project"><b>BaigMed</b> — <span>Healthcare-oriented software/product project exploring digital service workflows.</span></div>
-<div class="project"><b>Poker Simulator</b> — <span>Game simulation using Expectiminimax-style AI and probability-aware decision making.</span></div>
-<div class="project"><b>Sync Meta Flow</b> — <span>Automation-focused workflow synchronization and API project.</span></div>
-<div class="project"><b>Bangla Assistant Bot</b> — <span>Bangla-focused conversational AI/NLP experiment.</span></div>
-<div class="project"><b>CRM — CSE327</b> — <span>Software engineering project applying requirements, architecture and team-based CRM development.</span></div>
-<div class="project"><b>Agency Website</b> — <span>Responsive agency website work focused on presentation, positioning and conversion.</span></div>
-</div>
-<h2>Education</h2>
-<div class="entry"><div class="entry-head"><span class="entry-title">B.Sc. in Computer Science &amp; Engineering</span><span class="entry-date">Completed</span></div><div class="entry-org">North South University · Dhaka, Bangladesh</div><p>Computer Science / Artificial Intelligence focus.</p></div>
-<h2>Additional</h2>
-<p>Languages: Bengali (Native), English (Professional), Urdu/Hindi (Conversational). · Portfolio: taibur.vercel.app</p>
 </body>
 </html>
