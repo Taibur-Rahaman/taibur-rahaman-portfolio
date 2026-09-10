@@ -52,8 +52,25 @@
     el.addEventListener('click', () => playSound(el.dataset.sound), {passive:true});
   });
 
+  // Reliable opening splash: always starts before content is revealed, waits for the page,
+  // and keeps the animation long enough to be visible without trapping the user.
   const loader = document.getElementById('loader');
-  window.addEventListener('load', () => setTimeout(() => loader?.classList.add('hide'), reduced ? 0 : 1150));
+  const finishLoader = () => {
+    if (!loader) return;
+    loader.classList.add('hide');
+    document.body.classList.remove('loading');
+    setTimeout(() => loader.remove(), reduced ? 0 : 900);
+  };
+  const minimumSplash = reduced ? 250 : 1650;
+  const started = performance.now();
+  const waitForPage = () => {
+    const elapsed = performance.now() - started;
+    const wait = Math.max(0, minimumSplash - elapsed);
+    setTimeout(finishLoader, wait);
+  };
+  if (document.readyState === 'complete') waitForPage();
+  else window.addEventListener('load', waitForPage, {once:true});
+  setTimeout(() => { if (loader && !loader.classList.contains('hide')) finishLoader(); }, reduced ? 1200 : 5000);
 
   const reveals = document.querySelectorAll('.reveal');
   if (reduced || !('IntersectionObserver' in window)) reveals.forEach(el => el.classList.add('in'));
